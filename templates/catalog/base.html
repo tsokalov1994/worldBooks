@@ -13,8 +13,8 @@
             <div class="col-2 text-start">
                 <img src="{% static 'images/lego-model.jpg' %}" width="70" height="70">
             </div>
-            <div class="col-10 text-start">
-                <h1>This is header of site with logo</h1>
+            <div class="col-10 ">
+                <h3>World of books - printed and digital books</h3>
             </div>
         </div>
     </div>
@@ -22,8 +22,8 @@
         <div class="row bg-warning text-center">
             <h6>
                 <a href="{% url 'index' %}">Main page</a>
-                <a href="{% url 'index' %}">About company</a>
-                <a href="{% url 'index' %}">Contacts</a>
+                <a href="{% url 'about' %}">About company</a>
+                <a href="{% url 'contact' %}">Contacts</a>
             </h6>
 
         </div>
@@ -34,13 +34,12 @@
                 {% block header %} {% endblock header %}
             </div>
         </div>
-        <div class="row text-center text-body">
+        <div class="row text-start text-body">
             <div class="col-2">
                 {% block sidebar %}
                 <nav class="nav flex-column">
-                    <a class="nav-link" href="{% url 'index' %}">Link 1</a>
-                    <a class="nav-link" href="{% url 'index' %}">Link 2</a>
-                    <a class="nav-link" href="{% url 'index' %}">Link 3</a>
+                    <a class="nav-link" href="{% url 'books' %}">All books</a>
+                    <a class="nav-link" href="{% url 'authors-list' %}">All authors</a>
                 </nav>
                 {% endblock sidebar %}
             </div>
@@ -48,14 +47,34 @@
                 <div class="row text-center">
                     {% block content %}
                     {% endblock content %}
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if page_obj.paginator.num_pages > 1 %}
+                                {% if page_obj.has_previous %}
+                                    <a href="?page=1">&laquo; First</a>
+                                    <a href="?page={{ page_obj.previous_page_number }}"> Previous </a>
+                                {% endif %}
+
+                                <span class="current">
+                                    Page: {{ page_obj.number }} from {{ page_obj.paginator.num_pages }}.
+                                </span>
+
+                                {% if page_obj.has_next %}
+                                    <a href="?page= {{ page_obj.next_page_number }}">NExt</a>
+                                    <a href="?page= {{ page_obj.paginator.num_pages }}">Previous &raquo;</a>
+                                {% endif %}
+                            {% endif %}
+                        </span>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row bg-primary text-center text-white lh-1">
+        <div class="row bg-info text-center text-dark small lh-sm pt-2">
             {% block footer %}
-                <p>This is footer of all pages</p>
+                <p>Copyright IP "Tsokalov Artem", 2025.</p>
             {% endblock footer %}
         </div>
 

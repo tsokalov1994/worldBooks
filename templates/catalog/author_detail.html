@@ -1,0 +1,27 @@
+{% extends "catalog/base.html" %}
+{% block content %}
+    <div class="container text-start">
+        <div class="row my-2">
+            <h1>Name of author - "{{ author.first_name }}"</h1>
+        </div>
+        <div class="row my-2">
+            <h1>Last name of author - "{{ author.last_name }}"</h1>
+        </div>
+<!--        <div class="row my-2">-->
+<!--            <p><strong>Author</strong></p>-->
+<!--                {% for author in book.author.all %}-->
+<!--                    <a href="">{{ author.first_name }} {{ author.last_name }}</a>-->
+<!--                {% endfor %}-->
+<!--        </div>-->
+        <img src="{{ author.photo.url }}" alt="connect" style="max-height: 200px">
+        <a href="{{ author.photo.url }}" class="btn btn-primary" target="_blank">Show</a>
+        <div class="row my-2">
+            <div class="col">
+                <p><strong>Date of birth:</strong> {{ author.date_of_birth }}</p>
+            </div>
+        </div>
+        <div class="row my-2">
+            <p><strong>About:</strong> {{ author.about }}</p>
+        </div>
+    </div>
+{% endblock %}
